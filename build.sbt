@@ -12,5 +12,9 @@ libraryDependencies ++= Seq(
   cache,
   javaWs
 )
+
+libraryDependencies += "org.webjars" % "jquery" % "1.11.2"
+
+libraryDependencies += "org.webjars" % "bootstrap" % "2.1.1"
 PlayKeys.playWatchService := play.sbtplugin.run.PlayWatchService.sbt(pollInterval.value)
 
