@@ -5,7 +5,10 @@ import models.Task;
 import play.db.jpa.JPA;
 
 import java.util.List;
+import javax.inject.Named;
 
+
+@Named
 public class TaskPersistenceServiceImpl implements TaskPersistenceService {
 
   @Override
