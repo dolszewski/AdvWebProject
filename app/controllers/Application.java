@@ -4,7 +4,8 @@ import play.*;
 import play.mvc.*;
 import java.util.List;
 import views.html.*;
-import models.Task;
+import jpa.Task;
+import models.TaskForm;
 import play.db.jpa.JPA;
 
 import services.TaskPersistenceService;
@@ -27,18 +28,19 @@ public class Application extends Controller {
     private static final Logger logger = LoggerFactory.getLogger(Application.class);
     
     public Result index() {
-        return ok(index.render("Hello World!", play.data.Form.form(models.Task.class)));
+        return ok(index.render("Hello World!", play.data.Form.form(TaskForm.class)));
     }
     
     public Result addTask() {
     		logger.info("Hey Nate I Did IT!");
     		
-    		play.data.Form<models.Task> form = play.data.Form.form(models.Task.class).bindFromRequest();
+    		play.data.Form<TaskForm> form = play.data.Form.form(TaskForm.class).bindFromRequest();
     		if(form.hasErrors()) {
     			return badRequest(index.render("Hello World!", form));
     		}
     		
-	    	models.Task task = form.get();
+	   Task task = new Task();
+	   task.setContents(form.get().getContents());
 	    taskPersist.saveTask(task);
 
 	    	return redirect(routes.Application.index());
