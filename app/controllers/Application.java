@@ -30,7 +30,6 @@ public class Application extends Controller {
         return ok(index.render("Hello World!", play.data.Form.form(models.Task.class)));
     }
     
-    @Transactional
     public Result addTask() {
     		logger.info("Hey Nate I Did IT!");
     		
@@ -45,7 +44,6 @@ public class Application extends Controller {
 	    	return redirect(routes.Application.index());
     		
     }
-    @javax.transaction.Transactional
     public Result getTasks() {
     		List<Task> tasks = taskPersist.fetchAllTasks();
     		return ok(play.libs.Json.toJson(tasks));
