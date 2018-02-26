@@ -21,12 +21,14 @@ libraryDependencies ++= Seq(
   "org.springframework" % "spring-core"            % "4.1.6.RELEASE",
   "org.springframework" % "spring-jdbc"            % "4.1.6.RELEASE",
   "org.springframework" % "spring-orm"             % "4.1.6.RELEASE",
-  "org.springframework" % "spring-tx"              % "4.1.6.RELEASE"
+  "org.springframework" % "spring-tx"              % "4.1.6.RELEASE",
+  "org.springframework" % "spring-test"            % "4.1.6.RELEASE" % "test"
   
 )
 
 libraryDependencies += "org.webjars" % "jquery" % "1.11.2"
 
 libraryDependencies += "org.webjars" % "bootstrap" % "2.1.1"
+testOptions += Tests.Argument(TestFrameworks.JUnit, "-v")
 PlayKeys.playWatchService := play.sbtplugin.run.PlayWatchService.sbt(pollInterval.value)
 
