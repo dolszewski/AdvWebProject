@@ -1,6 +1,6 @@
 package services;
 
-import models.Task;
+import jpa.Task;
 
 import java.util.List;
 import javax.inject.Named;
@@ -18,6 +18,10 @@ public class TaskPersistenceServiceImpl implements TaskPersistenceService {
 	@Transactional
 	@Override
 	public void saveTask(Task task) {
+		if (task.getContents() == null) {
+			throw new IllegalArgumentException("Contents must not be blank");
+		}
+		
 		em.persist(task);
 	}
 
