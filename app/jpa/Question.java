@@ -20,21 +20,50 @@ public class Question {
 	private String answer;
 	@Column(name = "pass_hash")
 	private String passHash;
-	
+
+	/**
+	 * 
+	 * @return the generated ID
+	 */
 	public Integer getId(){ 
 		return id;
 		
 	}
+	/**
+	 * 
+	 * @return The question that is set
+	 */
 	public String getQuestion() {
 		return question;
 	}
+	/**
+	 * 
+	 * @param newId : Integer that is set
+	 * 
+	 */
 	public void setId(Integer newId) {
 		id = newId;
 	}
+	/**
+	 * 
+	 * @param newQuestion the new content for the question
+	 */
 	public void setQuestion(String newQuestion) {
-		question =newQuestion;
+		
+		question =newQuestion.substring(0,1).toUpperCase() + newQuestion.substring(1).toLowerCase();
 	}
+	/**
+	 * 
+	 * @return the answer contens
+	 */
 	public String getAnswer() {
 		return answer;
+	}
+	/**
+	 * 
+	 * @param newAnswer String for setting answer content
+	 */
+	public void setAnswer(String newAnswer) {
+		answer = newAnswer;
 	}
 }

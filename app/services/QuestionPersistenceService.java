@@ -6,8 +6,14 @@ import jpa.Question;
 
 public interface QuestionPersistenceService {
 
-    void saveQuestion(Question q);
+    Integer saveQuestion(Question q);
 
     List<Question> fetchAllQuestions();
+
+	Question fetchQuestion(String question);
+
+	boolean questionExists(String question);
+    
+   
 
 }
