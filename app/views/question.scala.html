@@ -1,0 +1,27 @@
+@import jpa.Question
+
+@(message: String, q: Question)
+@implicitFieldConstructor = @{ helper.FieldConstructor(twitterBootstrapInput.render) }
+
+
+@main("Common Sense App") {
+	
+	<div class="navbar navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container-fluid">
+				<a id="titleLink" class="brand" href="/">@message.toUpperCase</a>
+			</div>
+		</div>
+	</div>	
+	
+	<div class="container">
+		<p>@q.getQuestion</p>
+		<p>@q.getAnswer</p>
+		<div class="controls">
+					<a href="@routes.Application.index()" ><button>New Question</button></a>
+				</div>
+			
+	</div>
+
+
+}
