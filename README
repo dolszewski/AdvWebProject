@@ -1,4 +1,7 @@
-This is your new Play application
-=================================
+COMMON SENSE APP
+================
+Created by Daniel Olszewski
 
-This file will be packaged with your application, when using `activator dist`.
+Purpose: The purpose of this app is to ask me questions, and I will tell you what to do! Yes or no, only. But enter a question and hear your fate!
+
+Technical: This web application utilizes the play framework and add Spring and SQL. It uses dependency injection and database persistence. This allowed me to explore the play framework, data validation, html, CSS, Scala, and many other things. 
