@@ -29,23 +29,27 @@ public class Application extends Controller {
 	private static final Logger logger = LoggerFactory.getLogger(Application.class);
 
 	/**
-	 * 
+	 * Renders the QuestionForm into an html webpage.
 	 * @return Renders the form for the Common Sense app.
 	 */
 	public Result index() {
+		logger.info("Rendering Common Sense App");
 		return ok(index.render("Common Sense!", play.data.Form.form(QuestionForm.class)));
 
 	}
+
 	/**
-	 * This method binds from the form the question, and then persists it to the database. If the question is already in there, it will 
-	 * retrieve the question from the database.
-	 * @return Redirects to the page that will display the question added 
+	 * This method binds from the form the question, and then persists it to the
+	 * database. If the question is already in there, it will retrieve the question
+	 * from the database.
+	 * 
+	 * @return Redirects to the page that will display the question added
 	 */
 	public Result addQuestion() {
 		logger.info("I made it to line 1 of addQuestion");
 		play.data.Form<QuestionForm> form = play.data.Form.form(QuestionForm.class).bindFromRequest();
 		if (form.hasErrors()) {
-			//flash(s: "danger", s1: "Please fill out a correct question");
+			// flash(s: "danger", s1: "Please fill out a correct question");
 			return badRequest(index.render("Common Sense!", form));
 
 		}
@@ -57,20 +61,21 @@ public class Application extends Controller {
 			questionPersist.saveQuestion(question);
 
 		}
-		if(question.getQuestion() == null) {
+		if (question.getQuestion() == null) {
 			logger.warn("Checking empty question");
 			return badRequest(index.render("Common Sense!", form));
 		}
-		
-		
 
 		return redirect(routes.Application.showAnswer(question.getQuestion()));
 
 	}
+
 	/**
-	 * 
-	 * @param questionQ A string that is the question that will be searched for in the database
-	 * @return This returns a webpage result 
+	 * This renders the answer page
+	 * @param questionQ
+	 *            A string that is the question that will be searched for in the
+	 *            database
+	 * @return This returns a webpage result
 	 */
 	public Result showAnswer(String questionQ) {
 		Question q = questionPersist.fetchQuestion(questionQ);
